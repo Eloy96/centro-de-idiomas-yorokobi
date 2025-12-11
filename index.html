@@ -86,42 +86,38 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- HERO BANNER --- */
+        /* --- HERO BANNER CORREGIDO --- */
         .hero-banner {
-            background: url('Imagenes/banner.png') no-repeat center center;
-            background-size: cover;
-            padding: 5rem 2rem; border-radius: 30px; box-shadow: var(--shadow);
-            text-align: center; margin-bottom: 4rem; position: relative; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.5);
+            /* Eliminamos el background image y el padding exagerado */
+            background: transparent;
+            padding: 0; 
+            border-radius: 20px; 
+            box-shadow: var(--shadow);
+            text-align: center; 
+            margin-bottom: 4rem; 
+            position: relative; 
+            overflow: hidden;
+            /* Eliminamos bordes y capas extra */
+            border: none;
+            transition: transform 0.3s ease;
         }
+        
+        .hero-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Eliminamos la capa blanca ::before que lo opacaba */
         .hero-banner::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.9); z-index: 0;
+            display: none;
         }
-        .hero-content { position: relative; z-index: 1; }
-
-        .amij-badge {
-            background: var(--secondary); color: var(--white); padding: 8px 20px;
-            border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;
-            display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        
+        /* Estilo para la imagen del banner para que no se corte */
+        .hero-banner img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción original */
+            display: block;
         }
-
-        .hero-banner h1 {
-            font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--secondary);
-            font-family: 'Noto Sans JP', sans-serif; line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
-        }
-        .hero-banner h2 {
-            font-size: 1.1rem; color: var(--primary); font-weight: 600; letter-spacing: 2px;
-            margin-bottom: 2.5rem; text-transform: uppercase;
-        }
-        .whatsapp-main-btn {
-            background: #25D366; color: white; padding: 15px 40px; border-radius: 50px;
-            font-weight: bold; font-size: 1.1rem; display: inline-flex; align-items: center;
-            gap: 12px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s; border: 4px solid white;
-        }
-        .whatsapp-main-btn:hover { transform: translateY(-5px) scale(1.05); }
 
         /* --- INFO GRID --- */
         .info-grid {
@@ -144,6 +140,29 @@
         .value-card.obj { border-top: 5px solid var(--secondary); }
         .value-card.mis { border-top: 5px solid var(--primary); }
         .value-card.vis { border-top: 5px solid var(--accent); }
+
+        /* --- ABOUT INTRO BOX (NUEVO) --- */
+        .about-intro-box {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+            text-align: center;
+            border-top: 5px solid var(--accent);
+        }
+        .about-intro-box h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-intro-box p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto 1rem auto;
+            text-align: justify;
+        }
 
         /* --- HISTORIA (TIMELINE DETALLADO) --- */
         .history-container { max-width: 900px; margin: 0 auto; }
@@ -251,13 +270,12 @@
     <main>
         <!-- SECCIÓN: INICIO -->
         <section id="home" class="active-section">
+            <!-- HERO BANNER CORREGIDO -->
             <div class="hero-banner">
-                <div class="hero-content">
-                    <div class="amij-badge"><i class="fas fa-certificate"></i> Miembro Oficial de la AMIJ</div>
-                    <h1>CENTRO DE IDIOMAS YOROKOBI</h1>
-                    <h2>TE INVITAMOS A SER PARTE DE NUESTRA FAMILIA</h2>
-                    <a href="https://wa.me/522471058977" class="whatsapp-main-btn" target="_blank"><i class="fab fa-whatsapp"></i> Inscríbete por WhatsApp</a>
-                </div>
+                <!-- Enlace a WhatsApp cubriendo toda la imagen -->
+                <a href="https://wa.me/522471058977" target="_blank">
+                    <img src="Imagenes/banner.png" alt="Centro de Idiomas Yorokobi - Inscríbete por WhatsApp" title="Clic para inscribirte">
+                </a>
             </div>
 
             <div class="info-grid">
@@ -302,11 +320,18 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: NOSOTROS (HISTORIA COMPLETA) -->
+        <!-- SECCIÓN: NOSOTROS (ACTUALIZADA CON INTRO Y HISTORIA COMPLETA) -->
         <section id="about">
-            <div class="hero-banner" style="padding: 3rem; margin-bottom: 3rem;">
-                <h1>Nuestra Historia</h1>
+            <div class="hero-banner" style="background: none; padding: 0; margin-bottom: 3rem;">
+                <h1 style="color: var(--secondary);">Nuestra Historia</h1>
                 <p style="color: var(--secondary);">Pasión por la enseñanza desde 2018</p>
+            </div>
+
+            <!-- NUEVA SECCIÓN DE INTRODUCCIÓN EMOTIVA EXTRAÍDA DE LA IMAGEN -->
+            <div class="about-intro-box">
+                <h3>Desde que se fundó el Centro de Idiomas Yorokobi</h3>
+                <p>Siempre fue nuestra intención ayudar a que la gente se acercara a un idioma totalmente diferente. Sabemos que los estragos de la pandemia han hecho que muchas personas no puedan acceder a estos servicios o por cuestiones personales dejen a medias sus objetivos.</p>
+                <p>Es por ello que en Yorokobi somos empáticos con la gente y ofrecemos un servicio de calidad y profesionalismo a un costo accesible.</p>
             </div>
             
             <div class="history-container">
@@ -352,9 +377,9 @@
 
         <!-- SECCIÓN: JAPONÉS (INFORMACIÓN EXACTA) -->
         <section id="japanese">
-            <div class="hero-banner" style="padding: 2rem; margin-bottom: 2rem;">
-                <h2>Cursos de Japonés</h2>
-                <p>Todos los niveles | Clases por Zoom</p>
+            <div class="hero-banner" style="background: none; padding: 0; margin-bottom: 2rem;">
+                <h2 style="color: var(--secondary);">Cursos de Japonés</h2>
+                <p style="color: var(--secondary);">Todos los niveles | Clases por Zoom</p>
             </div>
             
             <div class="pricing-container">
@@ -416,9 +441,9 @@
 
         <!-- SECCIÓN: FRANCÉS (INFORMACIÓN EXACTA) -->
         <section id="french">
-            <div class="hero-banner" style="padding: 2rem; margin-bottom: 2rem;">
-                <h2>Cursos de Francés</h2>
-                <p>El idioma del amor</p>
+            <div class="hero-banner" style="background: none; padding: 0; margin-bottom: 2rem;">
+                <h2 style="color: var(--secondary);">Cursos de Francés</h2>
+                <p style="color: var(--secondary);">El idioma del amor</p>
             </div>
             
             <div class="pricing-container" style="justify-content: center; display: flex;">
@@ -444,7 +469,10 @@
 
         <!-- SECCIÓN: CONTACTO (INFORMACIÓN EXACTA) -->
         <section id="contact">
-            <div class="hero-banner" style="padding: 2rem; margin-bottom: 2rem;"><h2>Contáctanos</h2><p>Visítanos en Huamantla o escríbenos</p></div>
+            <div class="hero-banner" style="background: none; padding: 0; margin-bottom: 2rem;">
+                <h2 style="color: var(--secondary);">Contáctanos</h2>
+                <p style="color: var(--secondary);">Visítanos en Huamantla o escríbenos</p>
+            </div>
             <div class="contact-grid">
                 <div class="contact-info">
                     
@@ -545,9 +573,9 @@
 
         <!-- SECCIÓN: FAQ -->
         <section id="faq">
-            <div class="hero-banner" style="padding: 3rem; margin-bottom: 3rem;">
-                <h1>Preguntas Frecuentes</h1>
-                <p>Resolvemos tus dudas antes de inscribirte</p>
+            <div class="hero-banner" style="background: none; padding: 0; margin-bottom: 3rem;">
+                <h1 style="color: var(--secondary);">Preguntas Frecuentes</h1>
+                <p style="color: var(--secondary);">Resolvemos tus dudas antes de inscribirte</p>
             </div>
             <div style="max-width: 800px; margin: 0 auto;">
                 <div class="faq-item" onclick="toggleFaq(this)">
