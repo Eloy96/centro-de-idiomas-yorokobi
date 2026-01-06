@@ -37,6 +37,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg-gradient); color: var(--secondary); overflow-x: hidden; line-height: 1.6; min-height: 100vh; }
+        
+        /* REGLA DE ORO RESPONSIVA: Imágenes fluidas */
+        img { max-width: 100%; height: auto; }
 
         /* NAVEGACIÓN */
         nav {
@@ -50,7 +53,7 @@
 
         /* Menú Desktop & Mobile */
         .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
-        .hamburger { display: none; font-size: 1.8rem; background: none; border: none; color: var(--secondary); cursor: pointer; z-index: 1001; }
+        .hamburger { display: none; font-size: 1.8rem; background: none; border: none; color: var(--secondary); cursor: pointer; z-index: 1001; padding: 10px; }
 
         .nav-btn {
             background: transparent; border: none; font-size: 0.9rem; font-weight: 600;
@@ -61,24 +64,18 @@
         .nav-btn.test-btn { border: 2px solid var(--primary); color: var(--primary); }
         .nav-btn.test-btn:hover, .nav-btn.test-btn.active { background: var(--primary); color: white; }
 
-        /* Responsive Mobile */
-        @media (max-width: 768px) {
+        /* Responsive Mobile Navigation */
+        @media (max-width: 900px) { /* Ajustado para tablets también */
             .hamburger { display: block; }
             .nav-links {
                 display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
                 background-color: rgba(255, 255, 255, 0.98); padding: 20px;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; gap: 15px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-top: 1px solid #eee; gap: 10px;
                 animation: slideDown 0.3s ease forwards;
             }
             .nav-links.nav-active { display: flex; }
-            .nav-btn { width: 100%; text-align: center; padding: 12px; }
-            .logo img { height: 50px; }
-            .info-grid { grid-template-columns: 1fr; }
-            .methodology-box { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 480px) {
-            .hero-banner { padding: 2rem 1rem; }
-            .logo img { height: 40px; }
+            .nav-btn { width: 100%; text-align: center; padding: 15px; font-size: 1.1rem; } /* Botones más grandes para dedos */
+            .logo img { height: 45px; }
         }
 
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -99,55 +96,59 @@
             border: 1px solid rgba(255,255,255,0.5);
         }
         #home .hero-banner {
-            background-image: url('Imagenes/banner.png');
+            background-image: url('Imagenes/banner.png'); /* Asegúrate que esta ruta exista, si no se verá blanco */
             background-size: cover; background-position: center center;
             min-height: 500px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 3rem;
         }
         
         .whatsapp-main-btn {
-            background: #25D366; color: white; padding: 15px 40px; border-radius: 50px;
-            font-weight: bold; font-size: 1.1rem; display: inline-flex; align-items: center;
-            gap: 12px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s; border: 4px solid white;
+            background: #25D366; color: white; padding: 15px 30px; border-radius: 50px;
+            font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center;
+            gap: 10px; text-decoration: none; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s; border: 4px solid white; text-align: center; justify-content: center;
+            max-width: 90%; /* Evita que se salga en móviles muy pequeños */
         }
         .whatsapp-main-btn:hover { transform: translateY(-5px) scale(1.05); }
 
         /* ELEMENTOS GENERALES */
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; align-items: center; }
-        .info-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--primary); }
+        .info-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--primary); line-height: 1.2; }
+        
         .methodology-box { background: var(--secondary); color: white; border-radius: 30px; padding: 3rem; margin: 4rem 0; display: flex; align-items: center; gap: 2rem; }
         .method-icon { background: rgba(255,255,255,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; color: var(--accent); }
         
+        /* TESTIMONIOS - Grid Responsive ajustado */
         .testimonials-section { margin-top: 4rem; text-align: center; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .testimonial-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: var(--shadow); text-align: left; position: relative; }
         .testimonial-card::before { content: '\201C'; font-size: 4rem; color: #f0f0f0; position: absolute; top: 0px; left: 20px; font-family: serif; }
         .stars { color: #FFD700; margin-bottom: 10px; }
         .student-name { font-weight: bold; color: var(--secondary); margin-top: 15px; display: block; }
 
-        /* PRECIOS */
-        .pricing-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        /* PRECIOS - Grid Responsive ajustado */
+        .pricing-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .price-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform 0.3s; }
         .price-card:hover { transform: translateY(-5px); }
         .price-header { padding: 2rem; text-align: center; color: white; }
         .price-header.japanese { background: linear-gradient(135deg, #FF4E50, #F9D423); }
         .price-header.french { background: linear-gradient(135deg, #0055A4, #0088cc); }
-        .price-body { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .price-tag { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--secondary); }
+        .price-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .price-tag { font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--secondary); }
+        .benefits-list { list-style: none; padding: 0; margin-bottom: 20px; }
         .benefits-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: #666; }
         .cta-card-btn { margin-top: auto; display: block; width: 100%; padding: 1rem; background: var(--secondary); color: var(--white); text-align: center; text-decoration: none; border-radius: 12px; font-weight: 600; transition: 0.3s; }
         .cta-card-btn:hover { background: var(--primary); transform: scale(1.02); }
 
         /* BLOG & MODAL */
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .blog-card { background: var(--white); border-radius: 20px; box-shadow: var(--shadow); padding: 1.5rem; cursor: pointer; transition: transform 0.3s; }
         .blog-card:hover { transform: translateY(-5px); }
 
         .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(5px); }
         .modal-content {
-            background-color: #fefefe; margin: 2% auto; padding: 0; border: 1px solid #888;
+            background-color: #fefefe; margin: 5% auto; padding: 0; border: 1px solid #888;
             width: 90%; max-width: 1000px; border-radius: 15px; text-align: left;
-            max-height: 90vh; overflow-y: auto; position: relative;
+            max-height: 85vh; overflow-y: auto; position: relative;
         }
         .close { color: #555; position: absolute; top: 15px; right: 20px; font-size: 32px; font-weight: bold; z-index: 100; background: rgba(255,255,255,0.8); border-radius: 50%; width: 40px; height: 40px; text-align: center; line-height: 40px; cursor: pointer; }
         .close:hover { background: white; }
@@ -156,7 +157,7 @@
         .quiz-container { max-width: 800px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 30px; box-shadow: var(--shadow); text-align: center; }
         .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; margin: 2rem 0; }
         .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s; }
-        .option-btn { background: #f8f9fa; border: 2px solid #e9ecef; padding: 1.2rem; border-radius: 15px; width: 100%; margin-bottom: 10px; text-align: left; cursor: pointer; transition: 0.2s; }
+        .option-btn { background: #f8f9fa; border: 2px solid #e9ecef; padding: 1.2rem; border-radius: 15px; width: 100%; margin-bottom: 10px; text-align: left; cursor: pointer; transition: 0.2s; font-size: 1rem; }
         .option-btn:hover { border-color: var(--primary); background: #fff0f0; }
         .option-btn.selected { background: var(--secondary); color: white; border-color: var(--secondary); }
         .option-btn.correct { background: #28a745; color: white; border-color: #28a745; }
@@ -170,7 +171,7 @@
         .contact-item:hover { transform: translateX(10px); }
         .map-wrapper { width: 100%; height: 100%; min-height: 450px; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: var(--shadow); }
         .contact-form { background: var(--white); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow); margin-top: 2rem; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
         .contact-form button { background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
         .teacher-img { max-width: 200px; border-radius: 50%; margin-bottom: 1rem; }
         
@@ -178,21 +179,57 @@
         .floating-wa:hover { transform: scale(1.1); }
         
         /* FAQ Styles */
-        .faq-item { background: white; margin-bottom: 10px; border-radius: 10px; overflow: hidden; cursor: pointer; }
-        .faq-question { padding: 1.5rem; font-weight: 600; display: flex; justify-content: space-between; }
+        .faq-item { background: white; margin-bottom: 10px; border-radius: 10px; overflow: hidden; cursor: pointer; border: 1px solid #eee; }
+        .faq-question { padding: 1.5rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center;}
         .faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: 0.3s; background: #f9f9f9; }
-        .faq-item.active .faq-answer { padding-bottom: 1.5rem; max-height: 200px; }
+        .faq-item.active .faq-answer { padding-bottom: 1.5rem; max-height: 500px; /* Aumentado para respuestas largas */ }
         .faq-item.active .faq-question { color: var(--primary); }
+
+        /* =========================================
+           MEDIA QUERIES GLOBALES (AJUSTES MÓVILES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* Texto y Títulos */
+            html { font-size: 14px; } /* Reduce ligeramente la fuente base */
+            h1 { font-size: 2rem; }
+            .info-text h3 { font-size: 1.8rem; text-align: center; }
+            p { font-size: 1rem; }
+
+            /* Grid Layouts a 1 Columna */
+            .info-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .contact-grid { grid-template-columns: 1fr; }
+            
+            /* Ajustes de Componentes */
+            .methodology-box { flex-direction: column; text-align: center; padding: 2rem; }
+            .map-wrapper { min-height: 300px; } /* Mapa más pequeño en móvil */
+            .quiz-container { padding: 1.5rem; }
+            .score-circle { width: 120px; height: 120px; font-size: 2.5rem; }
+            
+            /* Márgenes */
+            main { padding: 1rem 1rem; }
+            .hero-banner { padding: 2rem 1rem; min-height: auto; }
+            #home .hero-banner { min-height: 350px; } /* Banner más corto en móvil */
+            
+            /* Botón flotante más pequeño y accesible */
+            .floating-wa { width: 50px; height: 50px; font-size: 1.5rem; bottom: 20px; right: 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .logo img { height: 40px; }
+            .nav-btn { font-size: 1rem; }
+            .contact-item { flex-direction: column; text-align: center; gap: 0.5rem; }
+        }
+
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo" onclick="showSection('home')">
-            <img src="Imagenes/logo.png" alt="Yorokobi Centro de Idiomas Logo">
+            <img src="Imagenes/logo.png" alt="Yorokobi Centro de Idiomas Logo" onerror="this.src='https://via.placeholder.com/150x50?text=Yorokobi';"> <!-- Fallback image added -->
         </div>
         
-        <button class="hamburger" onclick="toggleMobileMenu()">
+        <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
         </button>
 
@@ -227,7 +264,7 @@
                     </p>
                 </div>
                 <div style="text-align: center; color: #ddd;">
-                     <i class="fas fa-laptop-house" style="font-size: 10rem; color: var(--secondary); opacity: 0.1;"></i>
+                     <i class="fas fa-laptop-house" style="font-size: 8rem; color: var(--secondary); opacity: 0.1;"></i>
                 </div>
             </div>
 
@@ -271,7 +308,7 @@
                     
                     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
                     <div class="question-box">
-                        <div class="question-text" id="question-text">Cargando pregunta...</div>
+                        <div class="question-text" id="question-text" style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem;">Cargando pregunta...</div>
                         <div class="options-grid" id="options-container"></div>
                     </div>
                     
@@ -281,12 +318,12 @@
                     </div>
                 </div>
 
-                <div id="result-screen" class="result-box">
+                <div id="result-screen" class="result-box" style="display: none;">
                     <h2>¡Test Completado!</h2>
                     <p style="margin-bottom: 2rem;">Tu resultado preliminar es:</p>
                     <div class="score-circle" id="final-score">0/10</div>
                     <h3 id="level-title" style="color: var(--primary); font-size: 1.8rem; margin-bottom: 1rem;"></h3>
-                    <p id="level-desc" style="margin-bottom: 2rem; padding: 0 2rem;"></p>
+                    <p id="level-desc" style="margin-bottom: 2rem; padding: 0 1rem;"></p>
                     <a id="wa-result-link" href="#" target="_blank" class="whatsapp-main-btn">
                         <i class="fab fa-whatsapp"></i> Contactar para inscripción
                     </a>
@@ -349,8 +386,8 @@
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 3rem; font-style: italic; color: var(--primary); font-size: 1.2rem;">
-                Centro de Idiomas Yorokobi desde 2018 🌟 Donde el aprendizaje se convierte en alegría y nace una sonrisa 🌟
+            <div style="text-align: center; margin-top: 3rem; font-style: italic; color: var(--primary); font-size: 1.2rem; padding: 0 1rem;">
+                Centro de Idiomas Yorokobi desde 2018 <br>🌟 Donde el aprendizaje se convierte en alegría y nace una sonrisa 🌟
             </div>
         </section>
 
@@ -366,22 +403,22 @@
                 <img src="https://lh3.googleusercontent.com/sitesv/AAzXCkdrMrOz9gXyqwmhya-CYVs8j80iQ05om7HimTfm01L4Z2mySXw16YgbJndlWD9Yvg840eQNOkI6A26_cXyNUB0xW4IrVRUfIkOHbdLm6VrkwtFV9AdCvGLXOee2RgUovuPuWrP239433VxLHhbXexLdsZxMudLUI0EOoyhzc3ArRzsAWmaGkc3WJManALR3JVULCKxn3cLNlkXVuhhiKqXHKOdSkapplpcW=w1280" alt="Foto del maestro de japonés Guillermo Ordaz" class="teacher-img" loading="lazy">
                 
                 <h4>FORMACIÓN</h4>
-                <ul>
+                <ul style="padding-left: 20px;">
                     <li>🎍 Técnico en sistemas computacionales. (Mantenimiento y actualización de computadoras)</li>
                     <li>🎍 Docente de nivel primaria en el área de informática. (Atendí a alumnos de 1o a 6o grado durante 8 años)</li>
                     <li>🎍 Administrativo de nivel primaria. (Actualmente si apoyando a directores en el área administrativa)</li>
                     <li>🎍 2011 Me certifiqué en el nivel N4 del idioma japonés, en 2018 vuelvo a hacer exámenes de certificación del para estar actualizado nuevamente con el idioma japonés</li>
                     <li>🎍 2020 a la fecha me integré a la Asociación Mexicana del Idioma Japonés A.C. e inicio cursos y talleres que brinda Fundación Japón para actualizar mi método de enseñanza aprendizaje del idioma japonés.</li>
                 </ul>
-
+                <br>
                 <h4>NIVELES QUE SE IMPARTEN</h4>
-                <h5>Básico</h5>
+                <h5 style="color: var(--primary); font-weight:bold;">Básico</h5>
                 <p>En este curso iniciamos desde cero y lo que vemos es hiragana, katakana y principalmente nos enfocamos en la adquisición de la lecto-escritura. Así mismo los chicos adquieren conocimiento de vocabulario de diversos temas y usan gramática sencilla para darle uso al vocabulario aprendido. Este nivel tiene un equivalente al NIVEL A1.1 del Marco Común Europeo de Referencia para las lenguas.</p>
                 
-                <h5>N5</h5>
+                <h5 style="color: var(--primary); font-weight:bold; margin-top:10px;">N5</h5>
                 <p>Es el primer nivel de certificación del idioma japonés. Los alumnos se prepararán para realizar el examen Nihongo nōryoku shiken, cuya abreviación es JLPT por sus siglas en inglés, es un examen de fluidez y conocimientos del idioma japonés. Aquí vemos gramática en 25 lecciones de la 1 a 25 usando el libro de Minna no Nihongo y se estudian los primeros 80 - 100 kanjis para este nivel.</p>
                 
-                <h5>N4</h5>
+                <h5 style="color: var(--primary); font-weight:bold; margin-top:10px;">N4</h5>
                 <p>Es el segundo nivel de certificación del idioma japonés. Los alumnos se prepararán para realizar el examen Nihongo nōryoku shiken, cuya abreviación es JLPT por sus siglas en inglés, es un examen de fluidez y conocimientos del idioma japonés. Aquí vemos gramática en 25 lecciones de la 26 a 50 usando el libro de Minna no Nihongo y se estudian 160 - 200 kanjis para este nivel.</p>
             </div>
 
@@ -440,10 +477,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 3rem; font-style: italic; color: var(--primary); font-size: 1.2rem;">
-                Centro de Idiomas Yorokobi desde 2018 🌟 Donde el aprendizaje se convierte en alegría y nace una sonrisa 🌟
-            </div>
         </section>
 
         <section id="french">
@@ -458,17 +491,19 @@
                 <img src="https://lh3.googleusercontent.com/sitesv/AAzXCkesdi2V61qIeV9l2X_s2P1WJ9F66xeofzR05NEzt_U-yuu9XcnYMr46WaiUv5OOaYkmodnniTAz9bp_EUcPfzHn0c7y6UNNy_cpIZQjvffDed-qhqbdODqaip-auzS87teesnEfBSa8kHi5P9uHLughyZaYTIKO4E_NKslKqbYytWRqw7ESKtf38EqT64Khvu0hhylPnpvUhO15Ocqome9n_4u2JmlwPMJzOJ0=w1280" alt="Foto de la maestra de francés Daniela Paz" class="teacher-img" loading="lazy">
                 
                 <h4>FORMACIÓN</h4>
-                <ul>
+                <ul style="padding-left: 20px;">
                     <li>🌸 Maestra en educación por el ITESM.</li>
                     <li>🌸 Docente certificada de francés con 14 años de experiencia en México y el extranjero.</li>
                     <li>🌸 Experiencia de preescolar a empresarios.</li>
                     <li>🌸 Traductor francés-español.</li>
                 </ul>
 
+                <br>
                 <h4>NIVELES QUE SE IMPARTEN</h4>
                 <p>Puede ser tu primer contacto con el idioma, o quizá, puedes entender frases e instrucciones básicas. Puedes interactuar en una forma muy simple y usar frases incompletas, sin una buena estructura gramatical.</p>
                 <p>Dominas frases sencillas y sabe escribirlas. Además, entiendes expresiones relacionadas con temas específicos y que te son familiares.</p>
                 <p>Captas el significado general de lo que te dicen, sin embargo sueles tener dificultades. Puedes leer y escribir textos sencillos y eres capaz de mantener una conversación básica.</p>
+
             </div>
 
             <div class="pricing-container" style="justify-content: center; display: flex;">
@@ -521,7 +556,7 @@
                 <form id="contactForm">
                     <input type="text" name="name" placeholder="Tu nombre" required>
                     <input type="email" name="email" placeholder="Tu email" required>
-                    <textarea name="message" placeholder="Tu mensaje" required></textarea>
+                    <textarea name="message" placeholder="Tu mensaje" required rows="4"></textarea>
                     <button type="submit">Enviar</button>
                 </form>
             </div>
@@ -547,9 +582,10 @@
     <a href="https://wa.me/522471058977" class="floating-wa" target="_blank" title="Contáctanos"><i class="fab fa-whatsapp"></i></a>
 
     <footer>
-        <p>© 2025 Yorokobi Centro de Idiomas. Todos los derechos reservados.</p>
+        <p style="text-align: center; padding: 20px; font-size: 0.9rem;">© 2025 Yorokobi Centro de Idiomas. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- MODAL -->
     <div id="articleModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeArticleModal()">×</span>
@@ -788,15 +824,23 @@
     <script>
         // --- NAVEGACIÓN ---
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('main > section'); // Solo secciones principales
+            const sections = document.querySelectorAll('main > section'); 
             sections.forEach(s => { s.classList.remove('active-section'); s.style.display = 'none'; });
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(b => b.classList.remove('active'));
             
             const target = document.getElementById(sectionId);
-            setTimeout(() => { target.style.display = 'block'; void target.offsetWidth; target.classList.add('active-section'); }, 50);
-            const map = {'home':0, 'about':1, 'faq':2, 'japanese':3, 'french':4, 'contact':5, 'test':6, 'blog':7};
-            if(buttons[map[sectionId]]) buttons[map[sectionId]].classList.add('active');
+            if(target){
+                target.style.display = 'block'; 
+                // Pequeño timeout para permitir la transición de opacidad
+                setTimeout(() => { target.classList.add('active-section'); }, 10);
+            }
+            
+            // Mapeo simple de botones
+            const btnArray = Array.from(buttons);
+            const activeBtn = btnArray.find(btn => btn.getAttribute('onclick').includes(sectionId));
+            if(activeBtn) activeBtn.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             // CERRAR MENU HAMBURGUESA EN MOBILE AL DAR CLICK
@@ -814,6 +858,8 @@
 
         // --- FAQ LOGIC ---
         function toggleFaq(element) {
+            // Cierra otros (acordeón opcional)
+            // document.querySelectorAll('.faq-item').forEach(item => { if(item !== element) item.classList.remove('active'); });
             element.classList.toggle('active');
         }
 
@@ -846,14 +892,12 @@
             { q: "21. Significado de 山 (Yama)", options: ["Río", "Montaña", "Fuego", "Árbol"], correct: 1 },
             { q: "22. Significado de 川 (Kawa)", options: ["Río", "Montaña", "Piedra", "Cielo"], correct: 0 },
             { q: "23. Significado de 人 (Hito)", options: ["Persona", "Grande", "Pequeño", "Entrar"], correct: 0 },
-            
             // Cultura y Frases
             { q: "24. Antes de comer se dice...", options: ["Itadakimasu (いただきます)", "Gochisousama (ごちそうさま)", "Tadaima (ただいま)", "Okaeri (おかえり)"], correct: 0 },
             { q: "25. Al salir de casa se dice...", options: ["Ittekimasu (行ってきます)", "Itterasshai (行ってらっしゃい)", "Tadaima (ただいま)", "Okaeri (おかえり)"], correct: 0 },
             { q: "26. 'Kawaii' significa...", options: ["Miedo", "Bonito/Tierno", "Feo", "Rápido"], correct: 1 },
             { q: "27. Capital de Japón", options: ["Kyoto", "Osaka", "Tokyo", "Hiroshima"], correct: 2 },
             { q: "28. Moneda de Japón", options: ["Won", "Yuan", "Yen (円)", "Dólar"], correct: 2 },
-            
             // N4 Intro
             { q: "29. Forma Te: 'Kaku' (Escribir) se convierte en...", options: ["Kaite (書いて)", "Kakite", "Kaita", "Kakande"], correct: 0 },
             { q: "30. 'Tabetai' significa...", options: ["Comí", "No como", "Quiero comer", "Comamos"], correct: 2 }
@@ -873,9 +917,8 @@
         }
 
         function restartQuiz() {
-            // Seleccionar 10 preguntas aleatorias nuevas
             const shuffled = shuffleArray([...questionBank]);
-            currentQuestions = shuffled.slice(0, 10);
+            currentQuestions = shuffled.slice(0, 10); // Restored to 10 questions
             
             currentIndex = 0;
             score = 0;
@@ -887,8 +930,8 @@
         function loadQuestion() {
             const qData = currentQuestions[currentIndex];
             document.getElementById('question-text').innerText = qData.q;
-            document.getElementById('q-counter').innerText = `Pregunta ${currentIndex + 1} de 10`;
-            document.getElementById('progress').style.width = `${((currentIndex) / 10) * 100}%`;
+            document.getElementById('q-counter').innerText = `Pregunta ${currentIndex + 1} de ${currentQuestions.length}`;
+            document.getElementById('progress').style.width = `${((currentIndex) / currentQuestions.length) * 100}%`;
             
             const container = document.getElementById('options-container');
             container.innerHTML = '';
@@ -914,7 +957,6 @@
             const isCorrect = selectedOption === currentQuestions[currentIndex].correct;
             if (isCorrect) score++;
 
-            // Mostrar feedback
             const buttons = document.querySelectorAll('.option-btn');
             buttons.forEach((btn, idx) => {
                 if (idx === currentQuestions[currentIndex].correct) {
@@ -928,32 +970,32 @@
             setTimeout(() => {
                 currentIndex++;
                 selectedOption = null;
-                if (currentIndex < 10) {
+                if (currentIndex < currentQuestions.length) {
                     loadQuestion();
                 } else {
                     showResult();
                 }
-            }, 1000); // Espera 1 segundo para mostrar feedback
+            }, 1000);
         }
 
         function showResult() {
             document.getElementById('quiz-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
-            document.getElementById('final-score').innerText = `${score}/10`;
+            document.getElementById('final-score').innerText = `${score}/${currentQuestions.length}`;
             
             let title, desc, waMsg;
             if (score <= 4) {
                 title = "Nivel Principiante (Inicio)";
                 desc = "¡Perfecto para empezar! Te recomendamos el Curso Básico o N5.";
-                waMsg = `Hice el test en la web y saqué ${score}/10. Quiero info para principiantes.`;
+                waMsg = `Hice el test en la web y saqué ${score}/${currentQuestions.length}. Quiero info para principiantes.`;
             } else if (score <= 7) {
                 title = "Nivel Básico (N5 - N4)";
                 desc = "Tienes buenas bases. Podrías unirte a un grupo N5 avanzado.";
-                waMsg = `Hice el test en la web y saqué ${score}/10. Tengo conocimientos básicos.`;
+                waMsg = `Hice el test en la web y saqué ${score}/${currentQuestions.length}. Tengo conocimientos básicos.`;
             } else {
                 title = "Nivel Intermedio (N4 - N3)";
                 desc = "¡Excelente nivel! Estás listo para retos mayores como el N4 o N3.";
-                waMsg = `Hice el test en la web y saqué ${score}/10. Tengo nivel intermedio.`;
+                waMsg = `Hice el test en la web y saqué ${score}/${currentQuestions.length}. Tengo nivel intermedio.`;
             }
 
             document.getElementById('level-title').innerText = title;
@@ -961,30 +1003,25 @@
             document.getElementById('wa-result-link').href = `https://wa.me/522471058977?text=${encodeURIComponent(waMsg)}`;
         }
 
-        // Iniciar Test al cargar
-        restartQuiz();
-
-        // Form Submission (simulada, usa email.js o similar en producción)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mensaje enviado exitosamente!');
-            this.reset();
-        });
-
         // Article Modal
         function openArticleModal(articleId) {
             document.getElementById('articleModal').style.display = 'block';
-            document.getElementById(articleId).style.display = 'block';
+            const article = document.getElementById(articleId);
+            if(article) article.style.display = 'block';
             document.body.style.overflow = 'hidden'; 
         }
         function closeArticleModal() {
             document.getElementById('articleModal').style.display = 'none';
             document.querySelectorAll('#articleModal > .modal-content > div').forEach(div => div.style.display = 'none');
-            document.body.style.overflow = 'auto'; // Restaurar scroll
+            document.body.style.overflow = 'auto'; 
         }
         window.onclick = function(e) {
             if(e.target == document.getElementById('articleModal')) closeArticleModal();
         }
+
+        // Iniciar app
+        showSection('home');
+        restartQuiz();
 
     </script>
 </body>
